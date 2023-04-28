@@ -1,0 +1,92 @@
+
+@products=http://localhost:8000/api/products
+@reviews=http://localhost:8000/api/reviews
+@orders=http://localhost:8000/api/orders
+@category=http://localhost:8000/api/categories
+
+@auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoidmlqYXkiLCJlbWFpbCI6InZpamF5QGdtYWlsLmNvbSIsImN1c3RvbWVyX2lkIjoiNjM0Njk1MWU1NTZjMTkyYmRmNjQ1NWQ5IiwiaWF0IjoxNjY1NTkyNzc0LCJleHAiOjE2NzU5NjA3NzR9.-TCVKdh3hXnalxRizk23pB3KLCtFvic84wK0qbqWOHI
+
+#####################users api###############################
+
+POST http://localhost:8000/api/customer/login
+content-type: application/json
+
+{
+    "email":"vijay@gmail.com",
+    "password":"test"
+}
+###########
+PUT http://localhost:8000/api/customers/
+content-type: application/json
+authorization:{{auth}}
+
+{
+      "fullName":"ajay",
+      "email":"ajay@gmail.com"
+}
+############
+POST http://localhost:8000/api/product/review
+content-type: application/json
+authorization: {{auth}}
+
+{
+    "productId":"63442b87f34ca2e215734adf",
+     "rating":5,
+     "comment":"good"
+     
+}
+
+###########
+PUT http://localhost:8000/api/customers/address
+content-type: application/json
+authorization:{{auth}}
+
+{
+    "address_1":"address_2",
+    "address_2":"address_2"
+}
+###########
+DELETE http://localhost:8000/api/customers//deleteallusers
+
+######################products api###############################
+
+GET {{products}}/allproduct
+###
+GET {{products}}/incategory/mobile
+###
+GET {{products}}/search?search=mobile
+###
+GET {{products}}/5eb6f4b42fa79c58a8dd11e9
+
+###
+POST {{products}}/addproduct
+content-type: application/json
+
+{
+    "product_name":"txc",
+    "description":"tve description",
+    "category":"mobile",
+    "price":345
+    }
+###
+@productId=
+PATCH {{products}}/update/{{productId}}
+content-type: application/json
+
+{
+    "productname":"89750",
+    "price":"8ds90"
+}
+################review###############
+@productId=
+GET  {{reviews}}/allreview
+###
+POST {{reviews}}/addreview/{{productId}}
+content-type: application/json
+
+{
+    "review":"89750"
+}
+
+##############order##############
+
